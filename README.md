@@ -54,6 +54,9 @@ npm run dev
 - `npm run build` - Build the application for production
 - `npm run start` - Start the production server
 - `npm run lint` - Run ESLint for code quality checks
+- `npm test` - Run the test suite
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:coverage` - Run tests with coverage report
 
 ## Project Structure
 
@@ -63,6 +66,10 @@ src/
 │   ├── globals.css      # Global styles and Tailwind imports
 │   ├── layout.tsx       # Root layout with HeroUI provider
 │   └── page.tsx         # Home page with HeroUI components demo
+├── __tests__/           # Test files
+│   ├── page.test.tsx    # Home page component tests
+│   ├── layout.test.tsx  # Layout component tests
+│   └── integration.test.tsx # Integration tests
 ├── components/          # Reusable React components (to be added)
 └── lib/                # Utility functions and configurations (to be added)
 ```
@@ -76,6 +83,42 @@ This application showcases various HeroUI components including:
 - **Buttons** - Various button styles (Primary, Secondary, Success, Warning, Danger)
 - **Typography** - Headings and text components
 - **Layout** - Grid and container components
+
+## Testing
+
+This project includes a comprehensive test suite using Jest and React Testing Library.
+
+### Test Structure
+
+- **Unit Tests** - Test individual components and functions
+- **Integration Tests** - Test component interactions and layout structure
+- **Accessibility Tests** - Ensure proper ARIA attributes and semantic HTML
+
+### Running Tests
+
+```bash
+# Run all tests once
+npm test
+
+# Run tests in watch mode (reruns on file changes)
+npm run test:watch
+
+# Generate coverage report
+npm run test:coverage
+```
+
+### Test Files
+
+- `src/__tests__/page.test.tsx` - Tests for the main page component
+- `src/__tests__/layout.test.tsx` - Tests for the root layout
+- `src/__tests__/integration.test.tsx` - Integration and accessibility tests
+
+The tests cover:
+- Component rendering and content
+- HeroUI component integration
+- Responsive layout structure
+- Accessibility attributes
+- User interactions
 
 ## Customization
 
