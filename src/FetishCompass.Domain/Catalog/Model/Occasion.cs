@@ -127,9 +127,6 @@ public class Occasion : AggregateRoot<OccasionId>
     
     public void ChangeVenue(VenueId newVenue)
     {
-        if (newVenue.Equals(null))
-            throw new ArgumentNullException(nameof(newVenue), "Venue cannot be null.");
-
         if (this.Venue.Equals(newVenue))
             return;
 

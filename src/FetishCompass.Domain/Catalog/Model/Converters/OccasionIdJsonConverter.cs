@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace FetishCompass.Domain.Catalog.Model;
+namespace FetishCompass.Domain.Catalog.Model.Converters;
 
 public sealed class OccasionIdJsonConverter : JsonConverter<OccasionId>
 {

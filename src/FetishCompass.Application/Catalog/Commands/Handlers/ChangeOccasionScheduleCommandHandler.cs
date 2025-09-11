@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace FetishCompass.Application.Catalog.Commands.Handlers;
 
-public class ChangeOccasionScheduleCommandHandler(AggregateRepository<Occasion, OccasionId> repository, ILogger<ChangeOccasionScheduleCommandHandler> logger)
+public class ChangeOccasionScheduleCommandHandler(IAggregateRepository<Occasion, OccasionId> repository, ILogger<ChangeOccasionScheduleCommandHandler> logger)
     : ICommandHandler<ChangeOccasionScheduleCommand>
 {
     public async Task Handle(ChangeOccasionScheduleCommand command, CancellationToken cancellationToken = default)
@@ -34,4 +34,3 @@ public class ChangeOccasionScheduleCommandHandler(AggregateRepository<Occasion, 
         }
     }
 }
-

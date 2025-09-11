@@ -35,7 +35,13 @@ public abstract class AggregateRoot<TId> : IEquatable<AggregateRoot<TId>>, IVers
 
     protected void ApplyChange(IDomainEvent @event, bool isNew = true)
     {
-        var method = this.GetType().GetMethod("Apply", new[] { @event.GetType() });
+        var method = this.GetType().GetMethod(
+            "Apply",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public,
+            null,
+            new[] { @event.GetType() },
+            null
+        );
         if (method == null)
             throw new InvalidOperationException($"Apply method not found for {@event.GetType().Name}");
         method.Invoke(this, new object[] { @event });
