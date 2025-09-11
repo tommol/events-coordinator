@@ -35,7 +35,6 @@ public abstract class AggregateRoot<TId> : IEquatable<AggregateRoot<TId>>, IVers
 
     protected void ApplyChange(IDomainEvent @event, bool isNew = true)
     {
-        // Wywołuje metodę Apply dla danego typu zdarzenia
         var method = this.GetType().GetMethod("Apply", new[] { @event.GetType() });
         if (method == null)
             throw new InvalidOperationException($"Apply method not found for {@event.GetType().Name}");
