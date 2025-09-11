@@ -6,6 +6,8 @@ public abstract class AggregateRoot<TId> : IEquatable<AggregateRoot<TId>>, IVers
     where TId : notnull
 {
     private readonly List<IDomainEvent> _domainEvents = new();
+    // Event Sourcing: lista niezatwierdzonych zdarzeń
+    private readonly List<IDomainEvent> _uncommittedEvents = new();
 
     protected AggregateRoot(TId id)
     {
@@ -24,10 +26,25 @@ public abstract class AggregateRoot<TId> : IEquatable<AggregateRoot<TId>>, IVers
     public long Version { get; private set; }
 
     public IReadOnlyCollection<IDomainEvent> DomainEvents => this._domainEvents.AsReadOnly();
+    public IReadOnlyCollection<IDomainEvent> UncommittedEvents => _uncommittedEvents.AsReadOnly();
 
     protected void AddDomainEvent(IDomainEvent domainEvent)
     {
         this._domainEvents.Add(domainEvent);
+    }
+
+    protected void ApplyChange(IDomainEvent @event, bool isNew = true)
+    {
+        // Wywołuje metodę Apply dla danego typu zdarzenia
+        var method = this.GetType().GetMethod("Apply", new[] { @event.GetType() });
+        if (method == null)
+            throw new InvalidOperationException($"Apply method not found for {@event.GetType().Name}");
+        method.Invoke(this, new object[] { @event });
+        if (isNew)
+        {
+            _uncommittedEvents.Add(@event);
+            AddDomainEvent(@event);
+        }
     }
 
     public void ClearDomainEvents()
@@ -51,6 +68,21 @@ public abstract class AggregateRoot<TId> : IEquatable<AggregateRoot<TId>>, IVers
     protected void MarkAsModified()
     {
         IncrementVersion();
+    }
+
+    public void LoadFromHistory(IEnumerable<IDomainEvent> history)
+    {
+        foreach (var e in history)
+        {
+            ApplyChange(e, false);
+            Version++;
+        }
+        _uncommittedEvents.Clear();
+    }
+
+    public void MarkEventsAsCommitted()
+    {
+        _uncommittedEvents.Clear();
     }
 
     public bool Equals(AggregateRoot<TId>? other)
