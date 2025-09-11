@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetishCompass.AppHost", "FetishCompass.AppHost\FetishCompass.AppHost.csproj", "{4347F033-C6EF-4B7B-9259-37B57DD84EE7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetishCompass.ServiceDefaults", "FetishCompass.ServiceDefaults\FetishCompass.ServiceDefaults.csproj", "{8736445D-3F84-4066-8560-FCD6053FB0EA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetishCompass.Application", "FetishCompass.Application\FetishCompass.Application.csproj", "{6922F577-2EDD-4726-A872-2BB568E26909}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetishCompass.Domain", "FetishCompass.Domain\FetishCompass.Domain.csproj", "{3442BC6B-FACD-4C7D-A29F-456C5A87CE66}"
@@ -21,14 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4347F033-C6EF-4B7B-9259-37B57DD84EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4347F033-C6EF-4B7B-9259-37B57DD84EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4347F033-C6EF-4B7B-9259-37B57DD84EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4347F033-C6EF-4B7B-9259-37B57DD84EE7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8736445D-3F84-4066-8560-FCD6053FB0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8736445D-3F84-4066-8560-FCD6053FB0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8736445D-3F84-4066-8560-FCD6053FB0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8736445D-3F84-4066-8560-FCD6053FB0EA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6922F577-2EDD-4726-A872-2BB568E26909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6922F577-2EDD-4726-A872-2BB568E26909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6922F577-2EDD-4726-A872-2BB568E26909}.Release|Any CPU.ActiveCfg = Release|Any CPU
