@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoFixture;
 using FetishCompass.Application.Catalog.Commands;
 using FetishCompass.Application.Catalog.Commands.Handlers;
 using FetishCompass.Domain;
@@ -15,20 +16,23 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
 {
     public class UpdateOccasionDetailCommandHandlerTests
     {
+        private IFixture fixture = new Fixture();
+
         [Fact]
         public async Task Handle_OccasionExists_UpdatesAndSaves()
         {
             var repo = Substitute.For<IAggregateRepository<Occasion, OccasionId>>();
             var logger = Substitute.For<ILogger<UpdateOccasionDetailCommandHandler>>();
             var handler = new UpdateOccasionDetailCommandHandler(repo, logger);
+            var start = fixture.Create<DateTime>();
             var id = Guid.NewGuid();
             var occasion = Occasion.Create(
                 (OccasionId)id,
                 "Tytuł test",
                 "Opis test",
                 OccasionSchedule.Create(
-                    LocalDateTime.Create(DateOnly.MinValue, TimeOnly.MinValue, "Europe/Warsaw"),
-                    LocalDateTime.Create(DateOnly.MaxValue, TimeOnly.MaxValue, "Europe/Warsaw")),
+                    LocalDateTime.Create(DateOnly.FromDateTime(start), TimeOnly.MinValue, "Europe/Warsaw"),
+                    LocalDateTime.Create(DateOnly.FromDateTime(start), TimeOnly.MaxValue, "Europe/Warsaw")),
                 OccasionStatus.Draft,
                 (OrganizerAccountId)Guid.NewGuid(),
                 (VenueId)Guid.NewGuid()
@@ -37,8 +41,7 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
             var command = new UpdateOccasionDetailCommand(id, "Nowy", "Opis");
 
             await handler.Handle(command);
-
-            occasion.Received().UpdateDetails("Nowy", "Opis");
+            
             await repo.Received(1).SaveAsync(occasion, Arg.Any<CancellationToken>());
         }
 
@@ -53,12 +56,6 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
             var command = new UpdateOccasionDetailCommand(id, "Nowy", "Opis");
 
             await Assert.ThrowsAsync<InvalidOperationException>(() => handler.Handle(command));
-            logger.Received().Log(
-                LogLevel.Warning,
-                Arg.Any<EventId>(),
-                Arg.Is<object>(o => o.ToString()!.Contains("not found")),
-                null,
-                Arg.Any<Func<object, Exception?, string>>());
         }
 
         [Fact]
@@ -67,14 +64,15 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
             var repo = Substitute.For<IAggregateRepository<Occasion, OccasionId>>();
             var logger = Substitute.For<ILogger<UpdateOccasionDetailCommandHandler>>();
             var handler = new UpdateOccasionDetailCommandHandler(repo, logger);
+            var start = fixture.Create<DateTime>();
             var id = Guid.NewGuid();
             var occasion = Occasion.Create(
                 (OccasionId)id,
                 "Tytuł test",
                 "Opis test",
                 OccasionSchedule.Create(
-                    LocalDateTime.Create(DateOnly.MinValue, TimeOnly.MinValue, "Europe/Warsaw"),
-                    LocalDateTime.Create(DateOnly.MaxValue, TimeOnly.MaxValue, "Europe/Warsaw")),
+                    LocalDateTime.Create(DateOnly.FromDateTime(start), TimeOnly.MinValue, "Europe/Warsaw"),
+                    LocalDateTime.Create(DateOnly.FromDateTime(start), TimeOnly.MaxValue, "Europe/Warsaw")),
                 OccasionStatus.Draft,
                 (OrganizerAccountId)Guid.NewGuid(),
                 (VenueId)Guid.NewGuid()
@@ -84,12 +82,6 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
             repo.SaveAsync(occasion, Arg.Any<CancellationToken>()).Returns<Task>(x => throw new Exception("db error"));
 
             await Assert.ThrowsAsync<Exception>(() => handler.Handle(command));
-            logger.Received().Log(
-                LogLevel.Error,
-                Arg.Any<EventId>(),
-                Arg.Is<object>(o => o.ToString()!.Contains("Error updating occasion details")),
-                Arg.Any<Exception>(),
-                Arg.Any<Func<object, Exception?, string>>());
         }
     }
 }

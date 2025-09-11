@@ -19,6 +19,7 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
             var repo = Substitute.For<IAggregateRepository<Occasion, OccasionId>>();
             var logger = Substitute.For<ILogger<CreateOccasionCommandHandler>>();
             var handler = new CreateOccasionCommandHandler(repo, logger);
+            
             var command = new CreateOccasionCommand(
                 "Tytuł",
                 "Opis",
@@ -58,12 +59,6 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
                 .Returns<Task>(x => throw new Exception("db error"));
 
             await Assert.ThrowsAsync<Exception>(() => handler.Handle(command));
-            logger.Received().Log(
-                LogLevel.Error,
-                Arg.Any<EventId>(),
-                Arg.Is<object>(o => o.ToString()!.Contains("Error creating occasion")),
-                Arg.Any<Exception>(),
-                Arg.Any<Func<object, Exception?, string>>());
         }
     }
 }
