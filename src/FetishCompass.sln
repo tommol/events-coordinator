@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetishCompass.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetishCompass.Web", "FetishCompass.Web\FetishCompass.Web.csproj", "{66DB0C29-FA79-4D31-ACB3-05E419735999}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetishCompass.Shared", "FetishCompass.Shared\FetishCompass.Shared.csproj", "{D256FB9A-8A83-4092-AE48-F12D67770F56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{66DB0C29-FA79-4D31-ACB3-05E419735999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66DB0C29-FA79-4D31-ACB3-05E419735999}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66DB0C29-FA79-4D31-ACB3-05E419735999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D256FB9A-8A83-4092-AE48-F12D67770F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D256FB9A-8A83-4092-AE48-F12D67770F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D256FB9A-8A83-4092-AE48-F12D67770F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D256FB9A-8A83-4092-AE48-F12D67770F56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
