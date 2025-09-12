@@ -28,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Catalog\Application\" />
+      <Folder Include="Moderation\" />
     </ItemGroup>
 
 </Project>

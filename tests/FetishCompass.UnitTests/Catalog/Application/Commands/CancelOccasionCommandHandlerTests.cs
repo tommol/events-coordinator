@@ -8,18 +8,17 @@ using FetishCompass.Shared.Infrastructure.Repository;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 
-namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
+namespace FetishCompass.UnitTests.Catalog.Application.Commands
 {
-    public class UpdateOccasionDetailCommandHandlerTests
+    public class CancelOccasionCommandHandlerTests
     {
-        private IFixture fixture = new Fixture();
-
         [Fact]
-        public async Task Handle_OccasionExists_UpdatesAndSaves()
+        public async Task Handle_OccasionExists_CancelsAndSaves()
         {
+            var fixture = new Fixture();
             var repo = Substitute.For<IAggregateRepository<Occasion, OccasionId>>();
-            var logger = Substitute.For<ILogger<UpdateOccasionDetailCommandHandler>>();
-            var handler = new UpdateOccasionDetailCommandHandler(repo, logger);
+            var logger = Substitute.For<ILogger<CancelOccasionCommandHandler>>();
+            var handler = new CancelOccasionCommandHandler(repo, logger);
             var start = fixture.Create<DateTime>();
             var id = Guid.NewGuid();
             var occasion = Occasion.Create(
@@ -33,23 +32,25 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
                 (OrganizerAccountId)Guid.NewGuid(),
                 (VenueId)Guid.NewGuid()
             );
+            occasion.Publish();
             repo.GetByIdAsync((OccasionId)id, Arg.Any<CancellationToken>()).Returns(occasion);
-            var command = new UpdateOccasionDetailCommand(id, "Nowy", "Opis");
+            var command = new CancelOccasionCommand(id);
 
             await handler.Handle(command);
             
             await repo.Received(1).SaveAsync(occasion, Arg.Any<CancellationToken>());
+            Assert.Equal(OccasionStatus.Cancelled, occasion.Status);
         }
 
         [Fact]
         public async Task Handle_OccasionNotFound_ThrowsAndLogs()
         {
             var repo = Substitute.For<IAggregateRepository<Occasion, OccasionId>>();
-            var logger = Substitute.For<ILogger<UpdateOccasionDetailCommandHandler>>();
-            var handler = new UpdateOccasionDetailCommandHandler(repo, logger);
+            var logger = Substitute.For<ILogger<CancelOccasionCommandHandler>>();
+            var handler = new CancelOccasionCommandHandler(repo, logger);
             var id = Guid.NewGuid();
             repo.GetByIdAsync((OccasionId)id, Arg.Any<CancellationToken>()).Returns((Occasion?)null);
-            var command = new UpdateOccasionDetailCommand(id, "Nowy", "Opis");
+            var command = new CancelOccasionCommand(id);
 
             await Assert.ThrowsAsync<InvalidOperationException>(() => handler.Handle(command));
         }
@@ -57,9 +58,10 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
         [Fact]
         public async Task Handle_Exception_LogsAndThrows()
         {
+            var fixture = new Fixture();
             var repo = Substitute.For<IAggregateRepository<Occasion, OccasionId>>();
-            var logger = Substitute.For<ILogger<UpdateOccasionDetailCommandHandler>>();
-            var handler = new UpdateOccasionDetailCommandHandler(repo, logger);
+            var logger = Substitute.For<ILogger<CancelOccasionCommandHandler>>();
+            var handler = new CancelOccasionCommandHandler(repo, logger);
             var start = fixture.Create<DateTime>();
             var id = Guid.NewGuid();
             var occasion = Occasion.Create(
@@ -73,8 +75,9 @@ namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
                 (OrganizerAccountId)Guid.NewGuid(),
                 (VenueId)Guid.NewGuid()
             );
+            occasion.Publish();
             repo.GetByIdAsync((OccasionId)id, Arg.Any<CancellationToken>()).Returns(occasion);
-            var command = new UpdateOccasionDetailCommand(id, "Nowy", "Opis");
+            var command = new CancelOccasionCommand(id);
             repo.SaveAsync(occasion, Arg.Any<CancellationToken>()).Returns<Task>(x => throw new Exception("db error"));
 
             await Assert.ThrowsAsync<Exception>(() => handler.Handle(command));

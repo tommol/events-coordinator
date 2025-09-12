@@ -8,7 +8,7 @@ using FetishCompass.Shared.Infrastructure.Repository;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 
-namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
+namespace FetishCompass.UnitTests.Catalog.Application.Commands
 {
     public class ChangeOccasionScheduleCommandHandlerTests
     {

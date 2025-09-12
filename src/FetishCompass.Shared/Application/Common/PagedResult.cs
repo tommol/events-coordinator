@@ -10,9 +10,3 @@ public record PagedResult<T>(
     public bool HasNextPage => Page < TotalPages;
     public bool HasPreviousPage => Page > 1;
 }
-
-public record PagedQuery(int Page = 1, int PageSize = 20)
-{
-    public int Skip => (Page - 1) * PageSize;
-    public int Take => PageSize;
-}

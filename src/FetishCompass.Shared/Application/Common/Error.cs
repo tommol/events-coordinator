@@ -13,14 +13,3 @@ public sealed record Error(string Code, string Message, ErrorType Type = ErrorTy
 
     public static implicit operator Result(Error error) => Result.Failure(error);
 }
-
-public enum ErrorType
-{
-    None,
-    Failure,
-    Validation,
-    NotFound,
-    Conflict,
-    Unauthorized,
-    Forbidden
-}

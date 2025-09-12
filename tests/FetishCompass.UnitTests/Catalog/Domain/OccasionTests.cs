@@ -54,6 +54,18 @@ public class OccasionTests
         occasion.Publish();
         Assert.Equal(OccasionStatus.Published, occasion.Status);
     }
+    
+    [Fact]
+    public void MarkAsReady_ValidState_ChangesStatus()
+    {
+        var id = NewOccasionId();
+        var organizer = NewOrganizerId();
+        var venue = NewVenueId();
+        var schedule = NewSchedule();
+        var occasion = Occasion.Create(id, "Tytuł", "Opis", schedule, OccasionStatus.Draft, organizer, venue);
+        occasion.MarkAsReady();
+        Assert.Equal(OccasionStatus.ReadyForReview, occasion.Status);
+    }
 
     [Fact]
     public void Cancel_ValidState_ChangesStatus()
@@ -66,6 +78,21 @@ public class OccasionTests
         occasion.Publish();
         occasion.Cancel();
         Assert.Equal(OccasionStatus.Cancelled, occasion.Status);
+    }
+    
+    [Fact]
+    public void Delete_ValidState_ChangesStatus()
+    {
+        var id = NewOccasionId();
+        var organizer = NewOrganizerId();
+        var venue = NewVenueId();
+        var schedule = NewSchedule();
+        var occasion = Occasion.Create(id, "Tytuł", "Opis", schedule, OccasionStatus.Draft, organizer, venue);
+        occasion.MarkAsReady();
+        
+        occasion.Delete();
+        
+        Assert.Equal(OccasionStatus.Deleted, occasion.Status);
     }
 
     [Fact]
