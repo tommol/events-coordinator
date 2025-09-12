@@ -4,5 +4,4 @@ public enum AutomatedReviewFlag
 {
     Green,
     Yellow,
-    Red
 }

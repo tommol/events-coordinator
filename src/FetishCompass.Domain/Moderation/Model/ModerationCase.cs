@@ -68,6 +68,29 @@ public class ModerationCase : AggregateRoot<ModerationCaseId>
             ApplyChange(new ModerationCaseClosedDomainEvent(this.Id, this.Submission, acceptedAt,true, reviewNotes));
         }
     }
+    
+    public void Reject(ReviewNotes reviewNotes, bool automatedReview, DateTimeOffset rejectedAt)
+    {
+        if (this.Status == ModerationCaseStatus.Closed)
+        {
+            throw new InvalidOperationException("Moderation case is already closed.");
+        }
+        if (this.Status != ModerationCaseStatus.Open && automatedReview)
+        {
+            throw new InvalidOperationException("Moderation case is already in review by moderator.");
+        }
+
+        if (automatedReview)
+        {
+            MarkAsModified();
+            ApplyChange(new ModerationCaseRejectedDomainEvent(this.Id, reviewNotes, automatedReview, rejectedAt));
+        }
+        else
+        {
+            MarkAsModified();
+            ApplyChange(new ModerationCaseClosedDomainEvent(this.Id, this.Submission, rejectedAt,false, reviewNotes));
+        }
+    }
 
     private void Apply(ModerationCaseCreatedDomainEvent domainEvent)
     {
@@ -105,6 +128,22 @@ public class ModerationCase : AggregateRoot<ModerationCaseId>
             this.notes.Add(domainEvent.Notes);
         }
         this.ClosedAt = domainEvent.ClosedAt;
+    }
+    
+    private void Apply(ModerationCaseRejectedDomainEvent domainEvent)
+    {
+        if (domainEvent.ModerationCaseId != this.Id)
+        {
+            throw new InvalidOperationException("Domain event does not belong to this moderation case.");
+        }
+
+        if (domainEvent.AutomatedReview)
+        {
+            this.AutomatedReview = AutomatedReviewFlag.Yellow;
+            this.Status = ModerationCaseStatus.InReview;
+            this.notes.Add(domainEvent.ReviewNotes);
+            // Automated review does not close the case, it just adds a note and sets the flag
+        }
     }
     
 }

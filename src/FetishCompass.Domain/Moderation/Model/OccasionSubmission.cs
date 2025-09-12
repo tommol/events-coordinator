@@ -43,6 +43,7 @@ public class OccasionSubmission : AggregateRoot<OccasionSubmissionId>
         LocalDateTime startDate, 
         LocalDateTime endDate, 
         OrganizerAccountId organizer,
+        OccasionId linkedOccasion,
         VenueId venue)
     {
         var proposedOccasion = new ProposedOccasion(
@@ -78,6 +79,7 @@ public class OccasionSubmission : AggregateRoot<OccasionSubmissionId>
         MarkAsModified();
         ApplyChange(new OccasionSubmissionSentToReviewDomainEvent(Id));
     }
+    
     
     public void Accept(DateTimeOffset reviewedAt)
     {
@@ -126,5 +128,4 @@ public class OccasionSubmission : AggregateRoot<OccasionSubmissionId>
         this.Status = domainEvent.NewStatus;
         this.ReviewedAt = domainEvent.ReviewedAt;
     }
-    
 }

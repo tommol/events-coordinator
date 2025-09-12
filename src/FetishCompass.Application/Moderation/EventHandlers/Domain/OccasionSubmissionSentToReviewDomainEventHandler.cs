@@ -1,9 +1,10 @@
+using FetishCompass.Domain.Moderation.DomainEvents;
 using FetishCompass.Domain.Moderation.Model;
 using FetishCompass.Shared.Domain;
 using FetishCompass.Shared.Infrastructure.Repository;
 using Microsoft.Extensions.Logging;
 
-namespace FetishCompass.Domain.Moderation.DomainEvents.Handlers;
+namespace FetishCompass.Application.Moderation.EventHandlers.Domain;
 
 public sealed class OccasionSubmissionSentToReviewDomainEventHandler(
     IAggregateRepository<ModerationCase, ModerationCaseId> repository,

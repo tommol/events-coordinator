@@ -78,7 +78,15 @@ public class Occasion : AggregateRoot<OccasionId>
 
         return occasion;
     }
-    
+
+    public void MarkAsReady()
+    {
+        if (Status != OccasionStatus.Draft)
+            throw new InvalidOperationException("Only draft occasions can be marked as ready.");
+        ApplyChange(new OccasionMarkedAsReadyDomainEvent(this.Id));
+        MarkAsModified();
+       
+    }
     public void Publish()
     {
         if (Status != OccasionStatus.Draft)
@@ -188,4 +196,11 @@ public class Occasion : AggregateRoot<OccasionId>
         this.Venue = @event.Venue;
     }
     
+    private void Apply(OccasionMarkedAsReadyDomainEvent @event)
+    {
+        if (this.Id != @event.OccasionId)
+            throw new InvalidOperationException("Event OccasionId does not match aggregate Id.");
+
+        this.Status = OccasionStatus.ReadyForReview;
+    }
 }
