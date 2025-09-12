@@ -4,4 +4,4 @@ using FetishCompass.Shared.Application.IntegrationEvents;
 
 namespace FetishCompass.Application.Moderation.IntegrationEvents;
 
-public sealed record OccasionSubmissionReviewedIntegrationEvent(OccasionSubmissionId SubmissionId, OccasionId OccasionId, bool Approved, DateTimeOffset ReviewedAt) : IntegrationEvent;
+public sealed record OccasionSubmissionReviewedIntegrationEvent(Guid SubmissionId, Guid OccasionId, bool Approved, DateTimeOffset ReviewedAt) : IntegrationEvent;
