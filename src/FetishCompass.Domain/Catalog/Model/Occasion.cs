@@ -96,6 +96,15 @@ public class Occasion : AggregateRoot<OccasionId>
         MarkAsModified();
     }
     
+    public void Delete()
+    {
+        if (Status == OccasionStatus.Published)
+            throw new InvalidOperationException("Published occasions cannot be deleted.");
+
+        ApplyChange(new OccasionDeletedDomainEvent(this.Id));
+        MarkAsModified();
+    }
+    
     public void Cancel()
     {
         if (Status != OccasionStatus.Published)
@@ -202,5 +211,12 @@ public class Occasion : AggregateRoot<OccasionId>
             throw new InvalidOperationException("Event OccasionId does not match aggregate Id.");
 
         this.Status = OccasionStatus.ReadyForReview;
+    }
+    private void Apply(OccasionDeletedDomainEvent @event)
+    {
+        if (this.Id != @event.OccasionId)
+            throw new InvalidOperationException("Event OccasionId does not match aggregate Id.");
+        
+        this.Status = OccasionStatus.Deleted;
     }
 }

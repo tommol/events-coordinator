@@ -5,5 +5,6 @@ public enum OccasionStatus
     Draft,
     ReadyForReview,
     Published,
-    Cancelled
+    Cancelled,
+    Deleted
 }

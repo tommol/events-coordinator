@@ -15,7 +15,7 @@ public class OccasionSubmission : AggregateRoot<OccasionSubmissionId>
     
     public OrganizerAccountId Organizer { get; private set; }
     
-    public OccasionId? LinkedOccasion { get; private set; }
+    public OccasionId LinkedOccasion { get; private set; }
     
     [ExcludeFromCodeCoverage]
     private OccasionSubmission()
@@ -77,7 +77,7 @@ public class OccasionSubmission : AggregateRoot<OccasionSubmissionId>
         if (this.Status != SubmissionStatus.Received)
             throw new InvalidOperationException("Only submissions with status 'Received' can be sent to review.");
         MarkAsModified();
-        ApplyChange(new OccasionSubmissionSentToReviewDomainEvent(Id));
+        ApplyChange(new OccasionSubmissionSentToReviewDomainEvent(Id, this.LinkedOccasion));
     }
     
     
@@ -89,7 +89,7 @@ public class OccasionSubmission : AggregateRoot<OccasionSubmissionId>
         }
     
         MarkAsModified();
-        ApplyChange(new OccasionSubmissionReviewedDomainEvent(this.Id, SubmissionStatus.Accepted, reviewedAt));
+        ApplyChange(new OccasionSubmissionReviewedDomainEvent(this.Id,  this.LinkedOccasion,SubmissionStatus.Accepted, reviewedAt));
         
     }
     public void Reject(DateTimeOffset reviewedAt)
@@ -100,7 +100,7 @@ public class OccasionSubmission : AggregateRoot<OccasionSubmissionId>
         }
     
         MarkAsModified();
-        ApplyChange(new OccasionSubmissionReviewedDomainEvent(this.Id, SubmissionStatus.Rejected, reviewedAt));
+        ApplyChange(new OccasionSubmissionReviewedDomainEvent(this.Id,this.LinkedOccasion, SubmissionStatus.Rejected, reviewedAt));
 
     }
     private void Apply(OccasionSubmittedDomainEvent domainEvent)
