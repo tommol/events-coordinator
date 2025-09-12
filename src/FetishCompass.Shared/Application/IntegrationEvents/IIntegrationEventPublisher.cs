@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace FetishCompass.Shared.Application.IntegrationEvents
+﻿namespace FetishCompass.Shared.Application.IntegrationEvents
 {
     public interface IIntegrationEventPublisher
     {

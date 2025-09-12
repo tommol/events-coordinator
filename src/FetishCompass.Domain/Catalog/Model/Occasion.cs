@@ -1,4 +1,5 @@
-﻿using FetishCompass.Domain.Catalog.DomainEvents;
+﻿using System.Diagnostics.CodeAnalysis;
+using FetishCompass.Domain.Catalog.DomainEvents;
 using FetishCompass.Domain.IAM;
 using FetishCompass.Shared.Domain;
 
@@ -13,6 +14,7 @@ public class Occasion : AggregateRoot<OccasionId>
     public OrganizerAccountId Organizer { get; private set; }
     public VenueId Venue { get; private set; }
 
+    [ExcludeFromCodeCoverage]
     private Occasion()
     {
     }

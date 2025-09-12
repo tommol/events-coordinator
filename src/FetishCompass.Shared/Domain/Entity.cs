@@ -1,6 +1,4 @@
-﻿using FetishCompass.Shared.Domain.Exceptions;
-
-namespace FetishCompass.Shared.Domain;
+﻿namespace FetishCompass.Shared.Domain;
 
 public abstract class Entity<TId> : IEquatable<Entity<TId>>
     where TId : notnull

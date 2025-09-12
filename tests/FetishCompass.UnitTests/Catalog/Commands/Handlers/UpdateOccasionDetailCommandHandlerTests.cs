@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using AutoFixture;
 using FetishCompass.Application.Catalog.Commands;
 using FetishCompass.Application.Catalog.Commands.Handlers;
@@ -10,7 +7,6 @@ using FetishCompass.Domain.IAM;
 using FetishCompass.Shared.Infrastructure.Repository;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Xunit;
 
 namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
 {

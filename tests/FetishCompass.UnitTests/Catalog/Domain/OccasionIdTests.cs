@@ -1,6 +1,4 @@
-using System;
 using FetishCompass.Domain.Catalog.Model;
-using Xunit;
 
 namespace FetishCompass.UnitTests.Catalog.Domain
 {

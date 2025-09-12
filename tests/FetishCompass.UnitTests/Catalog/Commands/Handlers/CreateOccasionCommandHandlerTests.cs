@@ -1,13 +1,9 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using FetishCompass.Application.Catalog.Commands;
 using FetishCompass.Application.Catalog.Commands.Handlers;
 using FetishCompass.Domain.Catalog.Model;
 using FetishCompass.Shared.Infrastructure.Repository;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Xunit;
 
 namespace FetishCompass.UnitTests.Catalog.Commands.Handlers
 {

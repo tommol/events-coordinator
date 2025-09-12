@@ -1,6 +1,4 @@
-﻿using FetishCompass.Shared.Domain;
-
-namespace FetishCompass.Shared.Domain;
+﻿namespace FetishCompass.Shared.Domain;
 
 public interface IEventStore
 {
