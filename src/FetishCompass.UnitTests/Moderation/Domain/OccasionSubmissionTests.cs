@@ -1,9 +1,9 @@
 using AutoFixture;
-using FetishCompass.Domain.Moderation.Model;
 using FetishCompass.Domain.Catalog.Model;
 using FetishCompass.Domain.IAM;
+using FetishCompass.Domain.Moderation.Model;
 
-namespace FetishCompass.UnitTests.Moderation.Model;
+namespace FetishCompass.UnitTests.Moderation.Domain;
 
 public class OccasionSubmissionTests
 {

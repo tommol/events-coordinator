@@ -1,7 +1,7 @@
 using AutoFixture;
 using FetishCompass.Domain.Moderation.Model;
 
-namespace FetishCompass.UnitTests.Moderation.Model;
+namespace FetishCompass.UnitTests.Moderation.Domain;
 
 public class ModerationCaseTests
 {

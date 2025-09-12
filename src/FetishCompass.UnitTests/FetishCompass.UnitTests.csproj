@@ -28,7 +28,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Moderation\Application\DomainEvents\" />
       <Folder Include="Moderation\Application\IntegrationEvents\" />
     </ItemGroup>
 
