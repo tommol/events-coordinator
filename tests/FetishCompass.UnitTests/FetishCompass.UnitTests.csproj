@@ -28,7 +28,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Moderation\" />
+      <Folder Include="Moderation\Application\Commands\" />
+      <Folder Include="Moderation\Application\DomainEvents\" />
+      <Folder Include="Moderation\Application\IntegrationEvents\" />
     </ItemGroup>
 
 </Project>
