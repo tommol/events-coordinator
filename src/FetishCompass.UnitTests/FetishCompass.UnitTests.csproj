@@ -27,8 +27,4 @@
       <ProjectReference Include="..\..\src\FetishCompass.Shared\FetishCompass.Shared.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Moderation\Application\IntegrationEvents\" />
-    </ItemGroup>
-
 </Project>
