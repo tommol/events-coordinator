@@ -14,7 +14,7 @@ public sealed class MarkOccasionAsReadyCommandHandler(
     {
         try
         {
-            var occasion = await occasionRepository.GetByIdAsync(command.OccasionId, cancellationToken);
+            var occasion = await occasionRepository.GetByIdAsync((OccasionId)command.OccasionId, cancellationToken);
             if (occasion == null)
             {
                 throw new InvalidOperationException($"Occasion with ID {command.OccasionId} not found.");

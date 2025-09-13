@@ -1,6 +1,7 @@
 using AutoFixture;
 using FetishCompass.Domain.Catalog.Model;
 using FetishCompass.Domain.IAM;
+using FetishCompass.Domain.IAM.Model;
 using FetishCompass.Domain.Moderation.Model;
 
 namespace FetishCompass.UnitTests.Moderation.Domain;

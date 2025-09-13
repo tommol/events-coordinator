@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using FetishCompass.Domain.Catalog.DomainEvents;
 using FetishCompass.Domain.IAM;
+using FetishCompass.Domain.IAM.Model;
 using FetishCompass.Shared.Domain;
 
 namespace FetishCompass.Domain.Catalog.Model;

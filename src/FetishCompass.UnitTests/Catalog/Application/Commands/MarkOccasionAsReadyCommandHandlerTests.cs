@@ -4,6 +4,7 @@ using FetishCompass.Application.Catalog.Commands.Handlers;
 using FetishCompass.Domain;
 using FetishCompass.Domain.Catalog.Model;
 using FetishCompass.Domain.IAM;
+using FetishCompass.Domain.IAM.Model;
 using FetishCompass.Shared.Infrastructure.Repository;
 using Microsoft.Extensions.Logging;
 using NSubstitute;

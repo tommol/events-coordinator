@@ -1,3 +1,4 @@
+using FetishCompass.Domain.IAM.Model;
 using FetishCompass.Shared.Domain;
 
 namespace FetishCompass.Domain.IAM.DomainEvents;

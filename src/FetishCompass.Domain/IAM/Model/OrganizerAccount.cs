@@ -2,7 +2,7 @@
 using FetishCompass.Domain.IAM.DomainEvents;
 using FetishCompass.Shared.Domain;
 
-namespace FetishCompass.Domain.IAM;
+namespace FetishCompass.Domain.IAM.Model;
 
 public class OrganizerAccount : AggregateRoot<OrganizerAccountId>
 {

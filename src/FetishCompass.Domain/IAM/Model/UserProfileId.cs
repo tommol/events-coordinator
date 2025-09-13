@@ -1,11 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 
 namespace FetishCompass.Domain.IAM.Model;
 
-public readonly record struct OrganizerAccountId(Guid Value)
-    : ISpanFormattable, ISpanParsable<OrganizerAccountId>
+public readonly record struct UserProfileId(Guid Value)
+    : ISpanFormattable, ISpanParsable<UserProfileId>
 {
-    public static OrganizerAccountId New() => new(Guid.NewGuid());
+    public static UserProfileId New() => new(Guid.NewGuid());
 
     public override string ToString() => Value.ToString();
 
@@ -19,14 +19,14 @@ public readonly record struct OrganizerAccountId(Guid Value)
         => Value.TryFormat(destination, out charsWritten, format);
 
     // ---- ISpanParsable<OccasionId> (wymagane metody z ReadOnlySpan<char>) ----
-    public static OrganizerAccountId Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
+    public static UserProfileId Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
         => new(Guid.Parse(s));
 
-    public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out OrganizerAccountId result)
+    public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out UserProfileId result)
     {
         if (Guid.TryParse(s, out var g))
         {
-            result = new OrganizerAccountId(g);
+            result = new UserProfileId(g);
             return true;
         }
         result = default;
@@ -34,20 +34,20 @@ public readonly record struct OrganizerAccountId(Guid Value)
     }
 
 
-    public static OrganizerAccountId Parse(string s, IFormatProvider? provider = null)
+    public static UserProfileId Parse(string s, IFormatProvider? provider = null)
         => new(Guid.Parse(s));
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out OrganizerAccountId result)
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out UserProfileId result)
     {
         if (Guid.TryParse(s, out var g))
         {
-            result = new OrganizerAccountId(g);
+            result = new UserProfileId(g);
             return true;
         }
         result = default;
         return false;
     }
 
-    public static implicit operator Guid(OrganizerAccountId id) => id.Value;
-    public static explicit operator OrganizerAccountId(Guid value) => new(value);
+    public static implicit operator Guid(UserProfileId id) => id.Value;
+    public static explicit operator UserProfileId(Guid value) => new(value);
 }

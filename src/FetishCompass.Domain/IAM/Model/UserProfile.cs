@@ -1,8 +1,8 @@
 ﻿using FetishCompass.Shared.Domain;
 
-namespace FetishCompass.Domain.IAM;
+namespace FetishCompass.Domain.IAM.Model;
 
-public class UserProfile : AggregateRoot<Guid>
+public class UserProfile : AggregateRoot<UserProfileId>
 {
     
 }

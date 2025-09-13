@@ -1,6 +1,7 @@
 ﻿using FetishCompass.Domain;
 using FetishCompass.Domain.Catalog.Model;
 using FetishCompass.Domain.IAM;
+using FetishCompass.Domain.IAM.Model;
 using FetishCompass.Shared.Application.Commands;
 using FetishCompass.Shared.Infrastructure.Repository;
 using Microsoft.Extensions.Logging;

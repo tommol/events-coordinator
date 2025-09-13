@@ -1,4 +1,4 @@
-namespace FetishCompass.Domain.IAM;
+namespace FetishCompass.Domain.IAM.Model;
 
 public enum OrganizerType
 {

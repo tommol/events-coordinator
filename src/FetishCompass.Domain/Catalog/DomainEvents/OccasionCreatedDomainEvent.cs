@@ -1,5 +1,6 @@
 ﻿using FetishCompass.Domain.Catalog.Model;
 using FetishCompass.Domain.IAM;
+using FetishCompass.Domain.IAM.Model;
 using FetishCompass.Shared.Domain;
 
 namespace FetishCompass.Domain.Catalog.DomainEvents;

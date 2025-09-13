@@ -14,7 +14,7 @@ public sealed class PublishOccasionCommandHandler(
     {
         try
         {
-            var occasion = await repository.GetByIdAsync(command.OccasionId, cancellationToken);
+            var occasion = await repository.GetByIdAsync((OccasionId)command.OccasionId, cancellationToken);
             if (occasion == null)
             {
                 throw new InvalidOperationException($"Occasion with ID {command.OccasionId} not found.");
