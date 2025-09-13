@@ -3,4 +3,4 @@ using FetishCompass.Shared.Application.Commands;
 
 namespace FetishCompass.Application.Catalog.Commands;
 
-public sealed record DeleteOccasionCommand(OccasionId OccasionId) : ICommand;
+public sealed record DeleteOccasionCommand(Guid OccasionId) : ICommand;

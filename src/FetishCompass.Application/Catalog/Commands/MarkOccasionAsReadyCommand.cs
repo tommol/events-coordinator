@@ -3,4 +3,4 @@ using FetishCompass.Shared.Application.Commands;
 
 namespace FetishCompass.Application.Catalog.Commands;
 
-public sealed record MarkOccasionAsReadyCommand(OccasionId OccasionId) : ICommand;
+public sealed record MarkOccasionAsReadyCommand(Guid OccasionId) : ICommand;
