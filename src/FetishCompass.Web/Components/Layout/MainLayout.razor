@@ -1,13 +1,13 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="@_theme" @bind-IsDarkMode="@_isDark" />
+<MudThemeProvider Theme="@theme" @bind-IsDarkMode="@isDark" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
     <MudAppBar Elevation="2">
-        <MudIconButton Icon="@(_isDark ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
-                       OnClick="ToggleDark" />
+        <MudIconButton Icon="@(isDark ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
+                       OnClick="this.ToggleDark" />
         <MudText Typo="Typo.h6" Class="ml-2">Fetish Compass</MudText>
  </MudAppBar>
     <MudMainContent Class="pa-6">
@@ -16,9 +16,9 @@
 </MudLayout>
 
 @code {
-    private bool _isDark;
-    private string? _search;
-    private MudTheme _theme = new()
+    private bool isDark;
+
+    private readonly MudTheme theme = new()
     {
         PaletteLight = new PaletteLight()
         {
@@ -39,7 +39,7 @@
 
     private void ToggleDark()
     {
-        _isDark = !_isDark;
+        isDark = !isDark;
         
         StateHasChanged();  
     }

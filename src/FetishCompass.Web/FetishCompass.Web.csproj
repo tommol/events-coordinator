@@ -11,4 +11,8 @@
       <PackageReference Include="MudBlazor.ThemeManager" Version="3.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\FetishCompass.Application\FetishCompass.Application.csproj" />
+    </ItemGroup>
+
 </Project>
