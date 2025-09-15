@@ -97,6 +97,10 @@ public class OrganizerAccount : AggregateRoot<OrganizerAccountId>
 
     public void LinkAuthAccount(string auth)
     {
+        if (AccountType == OrganizerAccountType.Anonymous)
+        {
+            throw new InvalidOperationException("Cannot link auth account to an anonymous organizer account.");
+        }
         ApplyChange(new OrganizerAccountLinkedWithAuthDomainEvent(Id,auth));
         MarkAsModified();
     }
