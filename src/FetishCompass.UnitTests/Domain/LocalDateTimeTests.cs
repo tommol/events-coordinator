@@ -1,6 +1,4 @@
 using FetishCompass.Domain;
-using System;
-using Xunit;
 
 namespace FetishCompass.UnitTests.Domain
 {

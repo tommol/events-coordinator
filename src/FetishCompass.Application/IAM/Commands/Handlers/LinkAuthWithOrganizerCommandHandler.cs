@@ -17,7 +17,7 @@ public sealed class LinkAuthWithOrganizerCommandHandler(
             var account = await repository.GetByIdAsync((OrganizerAccountId)command.OrganizerId, cancellationToken);
             if (account == null)
             {
-                throw new Exception($"Organizer account with id {command.OrganizerId} not found");
+                throw new InvalidOperationException($"Organizer account with id {command.OrganizerId} not found");
             }
             account.LinkAuthAccount(command.AuthId);
             await repository.SaveAsync(account, cancellationToken);

@@ -1,7 +1,6 @@
 using FetishCompass.Application.Moderation.EventHandlers.Domain;
 using FetishCompass.Domain;
 using FetishCompass.Domain.Catalog.Model;
-using FetishCompass.Domain.IAM;
 using FetishCompass.Domain.IAM.Model;
 using FetishCompass.Domain.Moderation.DomainEvents;
 using FetishCompass.Domain.Moderation.Model;

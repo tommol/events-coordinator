@@ -1,10 +1,7 @@
 using AutoFixture;
-using FetishCompass.Application.Catalog.Commands;
-using FetishCompass.Application.Catalog.EventHandlers.Integration;
 using FetishCompass.Application.Catalog.IntegrationEvents;
 using FetishCompass.Application.Moderation.Commands;
 using FetishCompass.Application.Moderation.EventHandlers.Integration;
-using FetishCompass.Application.Moderation.IntegrationEvents;
 using FetishCompass.Shared.Application.Commands;
 using FetishCompass.Shared.Application.Common;
 using Microsoft.Extensions.Logging;

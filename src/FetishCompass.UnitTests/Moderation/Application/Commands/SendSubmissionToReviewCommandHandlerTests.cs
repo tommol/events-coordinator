@@ -2,7 +2,6 @@ using FetishCompass.Application.Moderation.Commands;
 using FetishCompass.Application.Moderation.Commands.Handlers;
 using FetishCompass.Domain;
 using FetishCompass.Domain.Catalog.Model;
-using FetishCompass.Domain.IAM;
 using FetishCompass.Domain.IAM.Model;
 using FetishCompass.Domain.Moderation.Model;
 using FetishCompass.Shared.Infrastructure.Repository;

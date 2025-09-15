@@ -1,11 +1,9 @@
 using AutoFixture;
-using FetishCompass.Application.Catalog.Commands.Handlers;
 using FetishCompass.Application.Catalog.EventHandlers.Domain;
 using FetishCompass.Application.Catalog.IntegrationEvents;
 using FetishCompass.Domain;
 using FetishCompass.Domain.Catalog.DomainEvents;
 using FetishCompass.Domain.Catalog.Model;
-using FetishCompass.Domain.IAM;
 using FetishCompass.Domain.IAM.Model;
 using FetishCompass.Shared.Application.IntegrationEvents;
 using FetishCompass.Shared.Infrastructure.Repository;
